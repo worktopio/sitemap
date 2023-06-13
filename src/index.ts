@@ -79,7 +79,6 @@ async function execute() {
 }
 
 // tslint:disable-next-line
-(async function() {
+(async function () {
   await execute();
-}());
-
+})();
