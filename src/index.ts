@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import fg from 'fast-glob';
 import fs from 'fs-extra';
 import parseJson from 'loose-json';
