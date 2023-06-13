@@ -34,6 +34,7 @@ async function execute() {
   const pages: Page[] = [];
 
   const paths = await fg(['app/page.tsx', 'app/**/page.tsx', 'app/**/**/page.tsx']);
+  console.log(paths)
 
   for (const filePath of paths) {
     const fileContent = fs.readFileSync(path.join(process.cwd(), filePath), 'utf-8');
@@ -69,6 +70,8 @@ async function execute() {
       pages.push(metadata);
     }
   }
+
+  console.log(process.cwd())
 
   const fullFilePath = path.join(process.cwd(), 'pages.json');
   if (fs.existsSync(fullFilePath)) {
