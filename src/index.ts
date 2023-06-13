@@ -30,7 +30,7 @@ function filePathToUrlPath(filePath: string) {
   return filePath.replace('app', '').replace('/page.tsx', '');
 }
 
-export default async function execute() {
+async function execute() {
   const pages: Page[] = [];
 
   const paths = await fg(['app/page.tsx', 'app/**/page.tsx', 'app/**/**/page.tsx']);
@@ -77,3 +77,9 @@ export default async function execute() {
 
   await fs.promises.writeFile(fullFilePath, JSON.stringify(pages.flat()));
 }
+
+// tslint:disable-next-line
+(async function() {
+  await execute();
+}());
+
