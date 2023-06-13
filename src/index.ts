@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 
+/* tslint:disable */
+
 import fg from 'fast-glob';
 import fs from 'fs-extra';
 import parseJson from 'loose-json';
@@ -81,7 +83,6 @@ async function execute() {
   await fs.promises.writeFile(fullFilePath, JSON.stringify(pages.flat()));
 }
 
-// tslint:disable-next-line
 (async function () {
   await execute();
 })();
