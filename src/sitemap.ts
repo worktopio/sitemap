@@ -1,6 +1,5 @@
 /* tslint:disable */
 
-import { Page, Breadcrumb, SitemapNode } from './types';
 import path from 'path';
 import fs from 'fs-extra';
 

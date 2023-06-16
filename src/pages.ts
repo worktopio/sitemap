@@ -4,7 +4,6 @@ import fg from 'fast-glob';
 import fs from 'fs-extra';
 import parseJson from 'loose-json';
 import path from 'path';
-import { Page, Breadcrumb } from './types';
 
 function filePathToUrlPath(filePath: string) {
   if (filePath === 'app/page.tsx') {
