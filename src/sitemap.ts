@@ -1,10 +1,10 @@
 /* tslint:disable */
 
-import { Page, SitemapNode } from './types';
+import { Page, Breadcrumb, SitemapNode } from './types';
 import path from 'path';
 import fs from 'fs-extra';
 
-const createNewNode = (breadcrumb: { name: string; href: string }) => {
+const createNewNode = (breadcrumb: Breadcrumb) => {
   return {
     name: breadcrumb.name,
     href: breadcrumb.href,
@@ -12,7 +12,7 @@ const createNewNode = (breadcrumb: { name: string; href: string }) => {
   };
 };
 
-const createHashForNodes = (node: { href: string; name: string }) => `${node.href}_${node.name}`;
+const createHashForNodes = (node: Breadcrumb) => `${node.href}_${node.name}`;
 
 export default async function execute(pages: Page[]) {
   const hashNodeMap = new Map();
@@ -33,7 +33,9 @@ export default async function execute(pages: Page[]) {
       breadcrumbs: [parent, child],
     } = data;
 
-    if (!!child) {
+    if (!parent && !child) {
+      continue;
+    } else if (!!child) {
       const parentHash = createHashForNodes(parent);
       const childHash = createHashForNodes(child);
 
