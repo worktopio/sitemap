@@ -64,5 +64,5 @@ export default async function execute(pages: Page[]) {
   }
 
   const fullFilePath = path.join(process.cwd(), 'lib/constants', 'sitemap.json');
-  await fs.outputJson(fullFilePath, output)
+  await fs.outputJson(fullFilePath, output);
 }
