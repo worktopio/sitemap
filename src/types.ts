@@ -1,7 +1,7 @@
 import { Metadata as NextMetadata } from 'next';
 import { Author } from 'next/dist/lib/metadata/types/metadata-types';
 
-declare global { 
+declare global {
   type Breadcrumb = {
     name: string;
     href: string;
