@@ -1,19 +1,26 @@
+import { Metadata as NextMetadata } from 'next';
+import { Author } from 'next/dist/lib/metadata/types/metadata-types';
+
 export type Breadcrumb = {
   name: string;
   href: string;
 };
 
-export type Page = {
+export interface Metadata extends NextMetadata {
   title: string;
   datePublished: string;
   dateModified?: string;
-  authors: string[];
+  authors: Author[];
   breadcrumbs: Breadcrumb[];
-  tags?: string[];
+  tags: string[];
   internalTitle?: string;
   internalDescription?: string;
   image?: string;
-};
+}
+
+export interface Page extends Metadata {
+  href: string;
+}
 
 export type SitemapNode = {
   name: string;

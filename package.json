@@ -28,7 +28,8 @@
   "dependencies": {
     "fast-glob": "^3.2.12",
     "fs-extra": "^11.1.1",
-    "loose-json": "^1.1.2"
+    "loose-json": "^1.1.2",
+    "next": "^13.4.6"
   },
   "description": ""
 }
