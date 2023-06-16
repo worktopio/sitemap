@@ -32,13 +32,13 @@ export default async function execute(pages: Page[]) {
     const {
       breadcrumbs: [parent, child],
     } = data;
-  
+
     if (!!child) {
       const parentHash = createHashForNodes(parent);
       const childHash = createHashForNodes(child);
-  
+
       let parentNode: SitemapNode;
-  
+
       if (!hashNodeMap.has(parentHash)) {
         parentNode = createNewNode(parent);
         hashNodeMap.set(parentHash, parentNode);
@@ -46,13 +46,13 @@ export default async function execute(pages: Page[]) {
       } else {
         parentNode = hashNodeMap.get(parentHash);
       }
-  
+
       if (hashNodeMap.has(childHash)) {
         const childNode = hashNodeMap.get(childHash);
         const possibleDuplication = parentNode.children.find(
-          (node) => createHashForNodes(node) === createHashForNodes(childNode)
+          (node) => createHashForNodes(node) === createHashForNodes(childNode),
         );
-  
+
         if (!possibleDuplication) {
           parentNode.children.push(childNode);
         }
@@ -63,7 +63,7 @@ export default async function execute(pages: Page[]) {
       }
     } else {
       const parentHash = createHashForNodes(parent);
-  
+
       if (!hashNodeMap.has(parentHash)) {
         const parentNode = createNewNode(parent);
         hashNodeMap.set(parentHash, parentNode);
@@ -71,16 +71,15 @@ export default async function execute(pages: Page[]) {
       } else {
         const parentNode = hashNodeMap.get(parentHash);
         const possibleDuplication = output.children.find(
-          (node) => createHashForNodes(node) === createHashForNodes(parentNode)
+          (node) => createHashForNodes(node) === createHashForNodes(parentNode),
         );
-  
+
         if (!possibleDuplication) {
           output.children.push(parentNode);
         }
       }
     }
   }
-  
 
   const fullFilePath = path.join(process.cwd(), 'lib/data', 'sitemap.json');
   await fs.outputJson(fullFilePath, output);
