@@ -1,10 +1,10 @@
 /* tslint:disable */
 
-import { Page } from './types';
+import { Page, SitemapNode } from './types';
 import path from 'path';
 import fs from 'fs-extra';
 
-const createNewNode = (breadcrumb: { name: any; href: any }) => {
+const createNewNode = (breadcrumb: { name: string; href: string }) => {
   return {
     name: breadcrumb.name,
     href: breadcrumb.href,
@@ -12,12 +12,12 @@ const createNewNode = (breadcrumb: { name: any; href: any }) => {
   };
 };
 
-const createHashForNodes = (node: { href: any; name: any }) => `${node.href}_${node.name}`;
+const createHashForNodes = (node: { href: string; name: string }) => `${node.href}_${node.name}`;
 
 export default async function execute(pages: Page[]) {
   const hashNodeMap = new Map();
 
-  const output = {
+  const output: SitemapNode = {
     name: 'Home',
     href: '/',
     children: [],
@@ -32,26 +32,27 @@ export default async function execute(pages: Page[]) {
     const {
       breadcrumbs: [parent, child],
     } = data;
-
+  
     if (!!child) {
       const parentHash = createHashForNodes(parent);
       const childHash = createHashForNodes(child);
-
-      let parentNode;
-
+  
+      let parentNode: SitemapNode;
+  
       if (!hashNodeMap.has(parentHash)) {
         parentNode = createNewNode(parent);
         hashNodeMap.set(parentHash, parentNode);
-        // @ts-ignore
         output.children.push(parentNode);
       } else {
         parentNode = hashNodeMap.get(parentHash);
       }
-
+  
       if (hashNodeMap.has(childHash)) {
         const childNode = hashNodeMap.get(childHash);
-        const possibleDuplication = parentNode.children.find((node: { href: any }) => node.href === childNode.href);
-
+        const possibleDuplication = parentNode.children.find(
+          (node) => createHashForNodes(node) === createHashForNodes(childNode)
+        );
+  
         if (!possibleDuplication) {
           parentNode.children.push(childNode);
         }
@@ -60,8 +61,26 @@ export default async function execute(pages: Page[]) {
         hashNodeMap.set(childHash, childNode);
         parentNode.children.push(childNode);
       }
+    } else {
+      const parentHash = createHashForNodes(parent);
+  
+      if (!hashNodeMap.has(parentHash)) {
+        const parentNode = createNewNode(parent);
+        hashNodeMap.set(parentHash, parentNode);
+        output.children.push(parentNode);
+      } else {
+        const parentNode = hashNodeMap.get(parentHash);
+        const possibleDuplication = output.children.find(
+          (node) => createHashForNodes(node) === createHashForNodes(parentNode)
+        );
+  
+        if (!possibleDuplication) {
+          output.children.push(parentNode);
+        }
+      }
     }
   }
+  
 
   const fullFilePath = path.join(process.cwd(), 'lib/data', 'sitemap.json');
   await fs.outputJson(fullFilePath, output);

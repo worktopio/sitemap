@@ -14,3 +14,9 @@ export type Page = {
   internalDescription?: string;
   image?: string;
 };
+
+export type SitemapNode = {
+  name: string;
+  href: string;
+  children: SitemapNode[];
+};
