@@ -13,10 +13,10 @@ declare global {
     dateModified?: string;
     authors: Author[];
     breadcrumbs: Breadcrumb[];
-    tags: string[];
     internalTitle?: string;
     internalDescription?: string;
     image?: string;
+    tags?: string[];
   }
 
   interface Page extends Metadata {
