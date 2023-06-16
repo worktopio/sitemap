@@ -54,7 +54,7 @@ export default async function execute() {
     }
   }
 
-  const fullFilePath = path.join(process.cwd(), 'lib/constants', 'pages.json');
+  const fullFilePath = path.join(process.cwd(), 'lib/data', 'pages.json');
   await fs.outputJson(fullFilePath, pages);
 
   return pages;

@@ -63,6 +63,6 @@ export default async function execute(pages: Page[]) {
     }
   }
 
-  const fullFilePath = path.join(process.cwd(), 'lib/constants', 'sitemap.json');
+  const fullFilePath = path.join(process.cwd(), 'lib/data', 'sitemap.json');
   await fs.outputJson(fullFilePath, output);
 }
