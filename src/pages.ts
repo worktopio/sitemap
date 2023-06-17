@@ -53,7 +53,7 @@ export default async function execute() {
     }
   }
 
-  const fullFilePath = path.join(process.cwd(), '.worktop', 'pages.json');
+  const fullFilePath = path.join(process.cwd(), 'app', 'pages.json');
   await fs.outputJson(fullFilePath, pages);
 
   return pages;
