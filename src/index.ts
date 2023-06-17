@@ -1,11 +1,3 @@
-#!/usr/bin/env node
+import getPages from './get-pages'
 
-/* tslint:disable */
-
-import pagesJson from './pages';
-import sitemap from './sitemap';
-
-(async function () {
-  const pages = await pagesJson();
-  sitemap(pages);
-})();
+export { getPages };

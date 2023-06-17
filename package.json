@@ -13,7 +13,7 @@
   },
   "author": "",
   "license": "ISC",
-  "bin": "lib/index.js",
+  "bin": "lib/cli.js",
   "files": [
     "lib/**/*"
   ],
