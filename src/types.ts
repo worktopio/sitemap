@@ -11,7 +11,7 @@ declare global {
     title: string;
     datePublished: string;
     dateModified?: string;
-    authors?: Author[];
+    authors: Author[];
     breadcrumbs: Breadcrumb[];
     internalTitle?: string;
     internalDescription?: string;
