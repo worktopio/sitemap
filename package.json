@@ -1,7 +1,7 @@
 {
   "name": "@worktopio/sitemap",
   "version": "1.0.28",
-  "main": "lib/index.js",
+  "main": "lib/types.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",
