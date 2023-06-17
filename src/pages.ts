@@ -55,7 +55,7 @@ export default async function execute() {
 
   pages.sort((a, b) => dayjs(b.datePublished).diff(dayjs(a.datePublished)));
 
-  const fullFilePath = path.join(process.cwd(), 'app', 'pages.json');
+  const fullFilePath = path.join(process.cwd(), 'public', 'pages.json');
   await fs.outputJson(fullFilePath, pages);
 
   return pages;
