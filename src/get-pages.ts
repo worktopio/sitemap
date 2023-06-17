@@ -9,7 +9,7 @@ interface Input {
 }
 
 export default async function getPages(input?: Input) {
-  const pagesPath = path.join(process.cwd(), 'app', 'pages.json');
+  const pagesPath = path.join(process.cwd(), 'public', 'pages.json');
   const pages = await fs.readJson(pagesPath);
 
   let results = pages as Page[];

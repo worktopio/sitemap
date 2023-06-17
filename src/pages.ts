@@ -10,7 +10,7 @@ function filePathToUrlPath(filePath: string) {
     return '/';
   }
 
-  return filePath.replace('app', '').replace('/page.tsx', '');
+  return filePath.replace('public', '').replace('/page.tsx', '');
 }
 
 export default async function execute() {
@@ -53,7 +53,7 @@ export default async function execute() {
     }
   }
 
-  const fullFilePath = path.join(process.cwd(), 'app', 'pages.json');
+  const fullFilePath = path.join(process.cwd(), 'public', 'pages.json');
   await fs.outputJson(fullFilePath, pages);
 
   return pages;
