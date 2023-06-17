@@ -1,5 +1,5 @@
 /* tslint:disable */
-
+import dayjs from 'dayjs';
 import fg from 'fast-glob';
 import fs from 'fs-extra';
 import parseJson from 'loose-json';
@@ -10,7 +10,7 @@ function filePathToUrlPath(filePath: string) {
     return '/';
   }
 
-  return filePath.replace('public', '').replace('/page.tsx', '');
+  return filePath.replace('app', '').replace('/page.tsx', '');
 }
 
 export default async function execute() {
@@ -53,7 +53,9 @@ export default async function execute() {
     }
   }
 
-  const fullFilePath = path.join(process.cwd(), 'public', 'pages.json');
+  pages.sort((a, b) => dayjs(b.datePublished).diff(dayjs(a.datePublished)));
+
+  const fullFilePath = path.join(process.cwd(), 'app', 'pages.json');
   await fs.outputJson(fullFilePath, pages);
 
   return pages;
