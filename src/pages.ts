@@ -12,10 +12,7 @@ function filePathToUrlPath(filePath: string) {
     return '/';
   }
 
-  return filePath
-  .replace('app', '')
-  .replaceAll(regex, '')
-  .replace('/page.tsx', '');
+  return filePath.replace('app', '').replaceAll(regex, '').replace('/page.tsx', '');
 }
 
 export default async function execute() {
