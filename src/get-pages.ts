@@ -18,7 +18,7 @@ export default async function getPages(input: Input) {
   let total = pages.length;
 
   if (tag) {
-    results = results.filter((page) => page.tags?.includes(tag));
+    results = results.filter((result) => result.tags?.includes(tag));
     total = results.length;
   }
 
