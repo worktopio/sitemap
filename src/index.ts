@@ -1,3 +1,3 @@
-import getPages from './get-pages'
+import getPages from './get-pages';
 
 export { getPages };

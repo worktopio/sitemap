@@ -10,7 +10,7 @@ interface Input {
 
 export default async function getPages(input: Input) {
   const pagesPath = path.join(process.cwd(), 'lib/data/pages.json');
-  const pages = await fs.readJson(pagesPath); 
+  const pages = await fs.readJson(pagesPath);
 
   const { tag, limit = 10, page = 1 } = input;
 
@@ -28,6 +28,6 @@ export default async function getPages(input: Input) {
 
   return {
     pages: results,
-    total
+    total,
   };
 }
