@@ -5,12 +5,17 @@ import fs from 'fs-extra';
 import parseJson from 'loose-json';
 import path from 'path';
 
+const regex = new RegExp(/(\/\([^)]+\))/, 'g'); // detects route groups, e.g.: /app/(secondary)/page.tsx
+
 function filePathToUrlPath(filePath: string) {
   if (filePath === 'app/page.tsx') {
     return '/';
   }
 
-  return filePath.replace('app', '').replace('/page.tsx', '');
+  return filePath
+  .replace('app', '')
+  .replaceAll(regex, '')
+  .replace('/page.tsx', '');
 }
 
 export default async function execute() {
