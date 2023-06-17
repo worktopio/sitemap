@@ -23,7 +23,7 @@ export default async function getPages(input?: Input) {
 
   results = results.sort((a, b) => dayjs(b.datePublished).diff(dayjs(a.datePublished)));
 
-  if(input?.page && input?.limit) {
+  if (input?.page && input?.limit) {
     const { page, limit } = input;
     results = results.slice((page - 1) * limit, page * limit);
   }
